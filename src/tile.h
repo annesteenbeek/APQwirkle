@@ -1,28 +1,21 @@
 
 #pragma once
-#include "map"
+#include <string>
+
 using namespace std;
-
-// FIXME shapes and colors could probably be managed more efficiently
-
-enum Color{Red, Green, Blue, Yellow, Orange, Purple,
-            ColorFirst=Red, ColorLast=Purple}; // added for iteration
-map<Color, char> colorString = {{Red, 'R'},{Green,'G'}, {Blue, 'B'}, {Yellow,'Y'}, {Orange,'O'}, {Purple, 'P'}};
-
-enum Shape{$, O, X, R, V, W,
-            ShapeFirst=$, ShapeLast=W}; // added for iteration
-map<Shape, char> shapeString = {{$, '$'}, {O, 'O'}, {X, 'X'}, {R, 'R'}, {V, 'V'}, {W, 'W'}};
-
 
 class Tile {
 
 public:
-    Color color;
-    Shape shape;
-
-    Tile(Shape _shape, Color _color);
+    Tile(char shape, char color);
     string to_string();
+    static constexpr char Colors[6] = {'R', 'G', 'B', 'Y', 'O', 'P'};
+    static constexpr char Shapes[6] = {'$', 'O', 'X', 'R', 'V', 'W'};
+
 
 private:
-    string print;
+
+    char _color;
+    char _shape;
+    string print = "";
 };

@@ -13,7 +13,7 @@ using namespace std;
 class Bag {
 private:
     vector<Tile> bagTiles;
-    auto engine = std::default_random_engine{}; // randomizer engine
+    default_random_engine engine = default_random_engine{}; // randomizer engine
 
 public:
     Bag();

@@ -6,12 +6,9 @@
 
 #include "boardTiles.h"
 
-Tile BoardTiles::get_tile(int row, int col) {
-    return tilemap[make_pair(row, col)];
-}
-
 void BoardTiles::place_tile(int row, int col, Tile tile) {
-    tilemap[make_pair(row, col)] = tile;
+    pair<int, int> index = make_pair(row, col);
+    tilemap.insert(make_pair(index, tile));
 
     // Store board bounds for easy retrieval
     minRow = min(row, minRow);
@@ -20,8 +17,21 @@ void BoardTiles::place_tile(int row, int col, Tile tile) {
     maxCol = max(col, maxCol);
 }
 
-map<pair<int, int>, Tile> BoardTiles::getMap(){
+map<pair<int, int>, Tile> BoardTiles::get_map(){
     return tilemap;
 };
 
+Tile * BoardTiles::get_tile(int row, int col) {
+    map<pair<int, int>, Tile>::iterator it = tilemap.find(make_pair(row, col));
+    if (it != tilemap.end())
+        return &(it -> second); // return pointer to tile
+    else return nullptr;
+}
 
+bool BoardTiles::has_tile(int row, int col) {
+    Tile* result = get_tile(row, col);
+    if(result)
+        return true;
+    else
+        return false;
+}

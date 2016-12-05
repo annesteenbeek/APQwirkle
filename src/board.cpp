@@ -41,9 +41,7 @@ int Board::get_points_for_move(vector<Move>& moves){
  * @brief function to print the current board layout as a string
  * */
 string Board::print_board(){
-    stringstream ss;
-    map<pair<int, int>, Tile> tileMap = boardTiles.getMap();
-    map<pair<int, int>, Tile>::iterator it;
+    string printBoard = " ";
     int minBoardSize = 10; // min board print size in blocks
     int minRow = boardTiles.minRow;
     int maxRow = boardTiles.maxRow;
@@ -54,19 +52,20 @@ string Board::print_board(){
     int cols = max(minBoardSize, maxCol - minCol);
 
     for (int col = minCol; col < minCol + cols; col++) {
-       ss << "|" << to_string(col);
+       printBoard += "  "  + to_string(col);
     }
+    printBoard += "\n";
     for (int row = minRow; row < minRow + rows; row++) {
-        ss << to_string(row);
+        printBoard += to_string(row);
         for (int col = minCol; col < minCol + cols; col++) {
-            it = tileMap.find(make_pair(row, col));
-            Tile &tile = it -> second;
-            if (it != tileMap.end()){
-                ss << it -> second.to_string();
+            Tile* tile = boardTiles.get_tile(row, col);
+            if (tile){
+                printBoard += tile -> to_string();
             } else {
-                ss << "|  ";
+                printBoard += "|  ";
             }
         }
-        ss << "|\n";
+        printBoard += "|\n";
     }
+    return printBoard;
 }

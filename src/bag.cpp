@@ -9,9 +9,9 @@
 
 Bag::Bag(){
     // add tile of every shape/color combo available
-    for (int color = ColorFirst; color <= ColorLast; ++color ){
-        for (int shape = ShapeFirst; shape <= ShapeLast; ++shape) {
-            Tile tile = Tile((Shape) shape, (Color) color);
+    for (const char &color : Tile::Colors){
+        for (const char &shape : Tile::Shapes) {
+            Tile tile = Tile(shape, color);
             bagTiles.push_back(tile);
         }
     }

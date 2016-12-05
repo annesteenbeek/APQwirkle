@@ -1,16 +1,14 @@
-//
-// Created by anne on 4-12-16.
-//
 
 #include "tile.h"
-#include "string"
 
 using namespace std;
 
-Tile::Tile(Shape _shape, Color _color){
-    shape = _shape;
-    color = _color;
-    print = colorString[color] + shapeString[shape] + string();
+
+Tile::Tile(char shape, char color){
+    _shape = shape;
+    _color = color;
+    print.push_back(_color);
+    print.push_back(_shape);
 }
 
 

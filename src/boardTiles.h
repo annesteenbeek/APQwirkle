@@ -11,6 +11,7 @@ using namespace std;
 
 
 class BoardTiles {
+private:
     map<pair<int, int>, Tile> tilemap;
 
 public:
@@ -19,9 +20,11 @@ public:
     int minCol = 0;
     int maxCol = 0;
 
-    Tile get_tile(int row, int col);
+    Tile * get_tile(int row, int col);
     void place_tile(int row, int col, Tile tile);
-    map<pair<int,int>, Tile> getMap();
+    map<pair<int,int>, Tile> get_map();
+
+    bool has_tile(int row, int col);
 };
 
 
