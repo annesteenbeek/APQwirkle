@@ -11,11 +11,11 @@
 
 class Board{
 private:
-    BoardTiles boardTiles;
 
 public:
     Board();
 
+    BoardTiles boardTiles;
     bool is_valid_move(vector<Move>& moves);
     int place_move(vector<Move>& moves);
 

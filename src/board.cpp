@@ -42,7 +42,8 @@ int Board::get_points_for_move(vector<Move>& moves){
  * */
 string Board::print_board(){
     string printBoard = " ";
-    int minBoardSize = 10; // min board print size in blocks
+    int minBoardSize = 8; // min board print size in blocks
+    int boardSpace = 2; // free room around board
     int minRow = boardTiles.minRow;
     int maxRow = boardTiles.maxRow;
     int minCol = boardTiles.minCol;
@@ -51,16 +52,16 @@ string Board::print_board(){
     int rows = max(minBoardSize, maxRow - minRow);
     int cols = max(minBoardSize, maxCol - minCol);
 
-    for (int col = minCol; col < minCol + cols; col++) {
+    for (int col = minCol; col <= minCol + cols; col++) {
        printBoard += "  "  + to_string(col);
     }
     printBoard += "\n";
-    for (int row = minRow; row < minRow + rows; row++) {
+    for (int row = minRow; row <= minRow + rows; row++) {
         printBoard += to_string(row);
-        for (int col = minCol; col < minCol + cols; col++) {
+        for (int col = minCol; col <= minCol + cols; col++) {
             Tile* tile = boardTiles.get_tile(row, col);
             if (tile){
-                printBoard += tile -> to_string();
+                printBoard += "|" + tile -> to_string();
             } else {
                 printBoard += "|  ";
             }
